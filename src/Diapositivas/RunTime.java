@@ -17,9 +17,21 @@ public class RunTime {
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No pudimos correr el ping");
+			System.exit(-1);
 		}
-		 
+		if(process == null) process.destroy();
+		
+		try {
+			process.waitFor();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No pudimos esperar por termino"); 
+			System.exit(-1);
+
+		}
+		System.out.println("Estatus de termino: "+process.exitValue()); 
+		System.exit(0); 
 	}
 
 }
