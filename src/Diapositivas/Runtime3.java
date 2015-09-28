@@ -16,21 +16,28 @@ public class Runtime3 {
 		Process proceso2 = null;
 		BufferedReader in = null;
 		BufferedWriter out= null;
+		BufferedReader in2 = null;
+		
 		
 		try {
 			proceso = runtime.exec("netstat -ano");
 			proceso2 = runtime.exec("ping");
 			in = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-			out = new BufferedWriter(new OutputStreamWriter(proceso2.getOutputStream()));
+			//proceso.waitFor();
 			String valores = null;
-			proceso.waitFor();
 			while((valores=in.readLine())!=null){
 				valores=in.readLine();
-				out.wait();
-				out.write(valores);
-				out.flush();
-				out.close();
 			}
+			out = new BufferedWriter(new OutputStreamWriter(proceso2.getOutputStream()));
+			//proceso2.waitFor();
+			out.write(valores);
+			out.flush();
+			out.close();
+			in2 = new BufferedReader(new InputStreamReader(proceso2.getInputStream()));
+			while((valores=in.readLine())!=null){
+				System.out.println(valores);
+			}
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
