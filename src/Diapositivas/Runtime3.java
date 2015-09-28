@@ -19,14 +19,19 @@ public class Runtime3 {
 		
 		try {
 			proceso = runtime.exec("netstat -ano");
-			proceso2 = runtime.exec("find \"0\"");
+			proceso2 = runtime.exec("ping");
 			in = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
 			out = new BufferedWriter(new OutputStreamWriter(proceso2.getOutputStream()));
 			String valores = null;
-			for (int i = 1; i < in.read(); i++) {
-				valores+=in.readLine();
+			proceso.waitFor();
+			while((valores=in.readLine())!=null){
+				valores=in.readLine();
+				out.wait();
+				out.write(valores);
+				out.flush();
+				out.close();
 			}
-			System.out.println(valores);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
