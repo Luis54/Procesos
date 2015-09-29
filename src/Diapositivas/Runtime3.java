@@ -23,7 +23,6 @@ public class Runtime3 {
 			proceso = runtime.exec("netstat -ano");
 			proceso2 = runtime.exec("find \"LISTEN\"");
 			in = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-			proceso.waitFor();
 			String valores;String lista="";
 			while((valores=in.readLine())!=null){
 				lista+=valores+"\n";
@@ -33,11 +32,9 @@ public class Runtime3 {
 			out.flush();
 			out.close();
 			in2 = new BufferedReader(new InputStreamReader(proceso2.getInputStream()));
-			while((valores=in2.readLine())!=null){
-				System.out.println(valores);
+			while((lista=in2.readLine())!=null){
+				System.out.println(lista);
 			}
-			
-			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
