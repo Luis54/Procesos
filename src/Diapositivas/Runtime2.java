@@ -7,7 +7,7 @@ public class Runtime2 {
 		//creamos un objeto tipo Runtime
 		Runtime runtime = Runtime.getRuntime();
 		try {
-			Process p = runtime.exec("notepad");
+			Process p = runtime.exec("tasklist");
 			Process p2 = runtime.exec("C:\\Program Files (x86)\\Mozilla Firefox\\firefox");//abrir firefox
 			Process p3 = runtime.exec("C:\\Windows\\System32\\cmd");
 			Process p4 = runtime.exec("C:\\Windows\\System32\\cmd dir");

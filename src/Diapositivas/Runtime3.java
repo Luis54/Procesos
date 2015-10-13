@@ -20,7 +20,7 @@ public class Runtime3 {
 		
 		
 		try {
-			proceso = runtime.exec("netstat -ano");
+			proceso = runtime.exec("tasklist");
 			proceso2 = runtime.exec("find \"LISTEN\"");
 			in = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
 			String valores;String lista="";
